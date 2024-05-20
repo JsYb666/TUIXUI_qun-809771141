@@ -112,7 +112,7 @@ CoreGui:SetCore("SendNotification", {
     Duration = 7, --时间
 }) 
 
-local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/jrdKakD6"))()
+local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/7xUnUgB3"))()
 
 local Window = OrionLib:MakeWindow({Name = "小魔", HidePremium = false, SaveConfig = false, IntroText = "注入器："..identifyexecutor(), ConfigFolder = "小魔脚本"})
 
