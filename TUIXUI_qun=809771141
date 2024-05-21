@@ -11,39 +11,39 @@ local CoreGui = game:GetService("StarterGui") -- Variable of StarterGui
 
 local Whitelisted = false;
 
-if game.Players.LocalPlayer.Name == "tps520" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "tapqnd" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "FalseHeale" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "hhhsrzhhh2" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "CocaColaCat0211" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "hpk2006hpk" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "wertpobv" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "hpk2006hpk" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
-if game.Players.LocalPlayer.Name == "cxknb666_6" then 
+if game.Players.LocalPlayer.Name == "" then 
 Whitelisted = true 
 end
 
@@ -112,7 +112,7 @@ CoreGui:SetCore("SendNotification", {
     Duration = 7, --时间
 }) 
 
-local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/7xUnUgB3"))()
+local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/u5vnTWue"))()
 
 local Window = OrionLib:MakeWindow({Name = "小魔", HidePremium = false, SaveConfig = false, IntroText = "注入器："..identifyexecutor(), ConfigFolder = "小魔脚本"})
 
