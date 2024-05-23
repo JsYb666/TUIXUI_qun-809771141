@@ -1,4 +1,4 @@
---我的源码没有加密并不是不会加密，没加密还搁那"退休脚本源码"，你开你妈呢？没加密还开出自豪感了？有本事把群里加密的给破了(没加密是因为麻烦，也给部分人二改学习)
+
 local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {
