@@ -4,7 +4,7 @@ local CoreGui = game:GetService("StarterGui")
 CoreGui:SetCore("SendNotification", {
     Title = "退休脚本",
     Text = "正在加载（反挂机已开启）",
-    Duration = 6, 
+    Duration = 20, 
 })
 
 CoreGui:SetCore("SendNotification", {
@@ -1414,27 +1414,6 @@ player:AddButton({
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/Unknownkellymc1/Unknownscripts/main/slap-battles')))()
   end
 })
-
-local Tab = Window:AddTab('退休刀刃球')
-
-local SectionLeft = Tab:AddSection('Main',"left")
-
-local SectionRight = Tab:AddSection('ESP',"right")
-
-SectionLeft:AddToggle('自动格挡',false,function(val)
-     _G.Config = {
-    MinDistance =0.5,
-    DelBallSpeed =0.25,
-    Battingtime =0.0001,
-    CloseCombatMode = "MinDistance"
-}
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0",true))()
-end)
-
-SectionLeft:AddToggle('自动格挡2',false,function(val)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/tangxianchun/550fx/main/autoParry2.lua"))()
-  end)
 
 local player = Window:MakeTab({
 	Name = "超级大力士",
