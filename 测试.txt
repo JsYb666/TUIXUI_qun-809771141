@@ -1415,6 +1415,37 @@ loadstring(game:HttpGet(('https://raw.githubusercontent.com/Unknownkellymc1/Unkn
   end
 })
 
+local Tab = Window:MakeTab({
+	Name = "退休刀刃球",
+	Icon = "rbxassetid://7733779610",
+	PremiumOnly = false
+})
+
+Tab:AddToggle({
+	Name = "自动格挡",
+	Default = false,
+	Callback = function(Value)
+local Tab = Window:AddTab('功能')
+
+local SectionLeft = Tab:AddSection('Main',"left")
+
+local SectionRight = Tab:AddSection('ESP',"right")
+
+SectionLeft:AddToggle('自动击球',false,function(val)
+     _G.Config = {
+    MinDistance =0.5,
+    DelBallSpeed =0.25,
+    Battingtime =0.0001,
+    CloseCombatMode = "MinDistance"
+})
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0",true))()
+end)
+
+SectionLeft:AddToggle('自动击球[2]',false,function(val)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/tangxianchun/550fx/main/autoParry2.lua"))()
+  end)	
+
 local player = Window:MakeTab({
 	Name = "超级大力士",
 	Icon = "rbxassetid://7733779610",
