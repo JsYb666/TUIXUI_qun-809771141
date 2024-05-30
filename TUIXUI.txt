@@ -69,7 +69,7 @@ end
 Start = tick()
 Heartbeat:Connect(HeartbeatUpdate)
 
-local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/qz5Vsxuk"))()
+local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/nBq2D86q"))()
 local Window = OrionLib:MakeWindow({Name = "退休脚本", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用退休脚本", ConfigFolder = "欢迎使用退休脚本"})
 local about = Window:MakeTab({
     Name = "退休脚本",
