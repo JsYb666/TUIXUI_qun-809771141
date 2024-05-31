@@ -1,5 +1,5 @@
 local RainbowLib =
-loadstring(game:HttpGet("https://pastebin.com/raw/hjCuH7QE"))()
+loadstring(game:HttpGet("https://pastebin.com/raw/Wh7Wa8Tb"))()
 local window = library:new("这里填你的脚本名")
 
 local creds = window:Tab("信息",'6035145364')
