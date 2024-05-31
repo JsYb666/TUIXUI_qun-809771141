@@ -1,5 +1,5 @@
 local RainbowLib =
-loadstring(game:HelpGet("https://raw.githubusercontent.com/YJY2022hh666/yjy/main/rainbow.ui.main.lua?token=GHSAT0AAAAAACESL5MYP6BL6PJ45CVEZRQEZFYXXUA",true))()
+loadstring(game:HelpGet("https://pastebin.com/raw/hjCuH7QE", true))()
 local window = library:new("这里填你的脚本名")
 
 local creds = window:Tab("信息",'6035145364')
