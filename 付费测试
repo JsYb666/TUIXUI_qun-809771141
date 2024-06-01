@@ -1,47 +1,23 @@
-local RainbowLib =
-loadstring(game:HttpGet("https://pastebin.com/raw/Wh7Wa8Tb"))()
-local window = library:new("这里填你的脚本名")
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
+ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
 
-local creds = window:Tab("信息",'6035145364')
+ wait(1) 
+ Notification:Notify( 
+     {Title = "退休脚本", Description = "您是尊贵的白名单用户，马上加载脚本"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+ ) 
+ wait(2) 
+ Notification:Notify( 
+     {Title = "退休脚本", Description = "退休脚本付费版"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+ )
+ wait(0.9)
+local Cloudlib = loadstring(game:HttpGet("https://gist.githubusercontent.com/XiaoYunCN/c212174d6263d5a43e95a59110a2724b/raw/c89c61fa5c8149a2554b66f618a32cd3e4d42877/gistfile1.txt", true))()
 
-local bin = creds:section("信息",true)
+local window = Cloudlib:new("退休脚本付费版")
 
-    bin:Label("你的用户名："..game.Players.LocalPlayer.Character.Humanoid.Name)
-    bin:Label("你的注入器:"..identifyexecutor())
+local Tab = creds:section("主要",true)
 
-local credits = creds:section("UI设置",true)
-
-    credits:Button("摧毁UI",function()
-        game:GetService("CoreGui")["frosty"]:Destroy()
-    end)
-
-    credits:Toggle("彩虹UI", "", false, function(state)
-        if state then
-        game:GetService("CoreGui")["frosty"].Main.Style = "DropShadow"
-        else
-            game:GetService("CoreGui")["frosty"].Main.Style = "Custom"
-        end
-    end)
-
-credits:Toggle("玩家加入游戏提示", "", false, function(state)
-        if state then
-    
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))()
-    end)
---------以上内容不要删，这行可以删
-local creds = window:Tab("这里是分类格式，就是菜单左侧的",'6035145364')
-
-local bin = creds:section("这里和上面一样",true)
-
-local credits = creds:section("这里还是和上面一样",true)
-
-    credits:Button("功能名",function()
-    空一行
-	脚本
-    end)
-
-credits:Toggle("功能名", "", false, function(state)--这个是一种功能，可以随意开关
-        if state then
-    空一行
-    脚本
-    end)
+local Tab = creds:section("退休脚本付费版",true)
