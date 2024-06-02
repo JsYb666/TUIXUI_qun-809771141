@@ -17,7 +17,3 @@ local NotificationHolder = loadstring(game:HttpGet("https://raw.githubuserconten
 local Cloudlib = loadstring(game:HttpGet("https://gist.githubusercontent.com/XiaoYunCN/c212174d6263d5a43e95a59110a2724b/raw/c89c61fa5c8149a2554b66f618a32cd3e4d42877/gistfile1.txt", true))()
 
 local window = Cloudlib:new("退休脚本付费版")
-
-local Tab = creds:section("主要",true)
-
-local Tab = creds:section("退休脚本付费版",true)
