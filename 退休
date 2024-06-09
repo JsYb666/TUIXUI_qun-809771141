@@ -2310,7 +2310,7 @@ end)
     end
 
     local notify = loadstring(game:HttpGet("https://pastebin.com/raw/DSi2P8Yc"))();
-    local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/wusiscript/rbx/main/%E7%99%BD%E5%90%8D%E5%8D%95.lua"))();
+    local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/JsYb666/TUIXUI_qun-809771141/TUIXUI/%E7%99%BD%E5%90%8D.txt"))();
     local HS = game:GetService("HttpService")
     local LP = game.Players.LocalPlayer
     local user = game:HttpGet("https://users.roblox.com/v1/users/"..LP.UserId)
