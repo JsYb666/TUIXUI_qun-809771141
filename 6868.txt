@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/CloudX-ScriptsWane/UI-library/main/Hyperinterface%20Mobile.lua", true))()
-local Window = Library:Create("☯︎退休脚本付费版☯︎")
+local Window = Library:Create("退休脚本付费版")
 
 local ToggleGui = Instance.new("ScreenGui")
 local Toggle = Instance.new("TextButton")
@@ -9,8 +9,8 @@ ToggleGui.Parent = game.CoreGui
 
 Toggle.Name = "Toggle"
 Toggle.Parent = ToggleGui
-Toggle.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-Toggle.BackgroundTransparency = 0.660
+Toggle.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Toggle.BackgroundTransparency = 0.670
 Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
 Toggle.Size = UDim2.new(0.0650164187, 0, 0.0888099447, 0)
 Toggle.Font = Enum.Font.SourceSans
