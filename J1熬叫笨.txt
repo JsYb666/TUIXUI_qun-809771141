@@ -1,0 +1,441 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/JsYb666/TUIXUI_qun-809771141/refs/heads/TUIXUI/8080.txt", true))()
+local Window = Library:Create("测试...？")
+
+local ToggleGui = Instance.new("ScreenGui")
+local Toggle = Instance.new("TextButton")
+
+ToggleGui.Name = "ToggleGui_HE"
+ToggleGui.Parent = game.CoreGui
+
+Toggle.Name = "Toggle"
+Toggle.Parent = ToggleGui
+Toggle.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Toggle.BackgroundTransparency = 0.02
+Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
+Toggle.Size = UDim2.new(0.05, 0.8, 0.18, 0.1)
+Toggle.Font = Enum.Font.SourceSans
+Toggle.Text = "隐藏打开"
+Toggle.TextScaled = true
+Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+Toggle.TextSize = 15
+Toggle.TextXAlignment = Enum.TextXAlignment.Left
+Toggle.Active = true
+Toggle.Draggable = true
+Toggle.MouseButton1Click:connect(function()
+Library:ToggleUI()
+end)
+
+local HomeTab = Window:Tab("脚本","rbxassetid://14491692101")
+local PlayerTab = Window:Tab("玩家","rbxassetid://14491692101")
+local VisualTab = Window:Tab("画面","rbxassetid://14491692101")
+
+HomeTab:Section("设置")
+
+HomeTab:Section("通用")
+
+HomeTab:Button("键盘脚本", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+end)
+
+HomeTab:Button("飞行脚本可隐藏", function()
+loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\90\66\122\99\84\109\49\102\34\41\41\40\41\10")()
+end)
+
+HomeTab:Button("工具点击传送", function()
+mouse = game.Players.LocalPlayer:GetMouse()
+                tool = Instance.new("Tool")
+                tool.RequiresHandle = false
+                tool.Name = "点击传送"
+                tool.Activated:connect(function()
+                local pos = mouse.Hit+Vector3.new(0,2.5,0)
+                pos = CFrame.new(pos.X,pos.Y,pos.Z)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+                end)
+                tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
+HomeTab:Button("工具", function()
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
+end)
+
+HomeTab:Button("通用透视", function()
+if _G.Reantheajfdfjdgse then
+    return
+end
+
+_G.Reantheajfdfjdgse = "susan"
+
+local coregui = game:GetService("CoreGui")
+local players = game:GetService("Players")
+local plr = players.LocalPlayer
+
+local highlights = {}
+
+function esp(target, color)
+    pcall(function()
+        if target.Character then
+            if not highlights[target] then
+                local highlight = Instance.new("Highlight", coregui)
+                highlight.Name = target.Name
+                highlight.Adornee = target.Character
+                highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                highlight.FillColor = color
+                highlights[target] = highlight
+            else
+                highlights[target].FillColor = color
+            end
+        end
+    end)
+end
+
+players.PlayerAdded:Connect(function(v)
+    v.CharacterAdded:Connect(function()
+        esp(v, _G.UseTeamColor and v.TeamColor.Color or ((plr.TeamColor == v.TeamColor) and _G.FriendColor or _G.EnemyColor))
+    end)
+end)
+
+players.PlayerRemoving:Connect(function(v)
+    if highlights[v] then
+        highlights[v]:Destroy()
+        highlights[v] = nil
+    end
+end)
+
+for i, v in pairs(players:GetPlayers()) do
+    if v ~= plr then
+        local color = _G.UseTeamColor and v.TeamColor.Color or ((plr.TeamColor == v.TeamColor) and _G.FriendColor or _G.EnemyColor)
+        v.CharacterAdded:Connect(function()
+            local color = _G.UseTeamColor and v.TeamColor.Color or ((plr.TeamColor == v.TeamColor) and _G.FriendColor or _G.EnemyColor)
+            esp(v, color)
+        end)
+        
+        esp(v, color)
+    end
+end
+
+while task.wait() do
+    for i, v in pairs(highlights) do
+        local color = _G.UseTeamColor and i.TeamColor.Color or ((plr.TeamColor == i.TeamColor) and _G.FriendColor or _G.EnemyColor)
+        v.FillColor = color
+    end
+end
+end)
+HomeTab:Section("主要")
+
+HomeTab:Toggle("状态: ", function(state)
+	getgenv().HitboxStatus = state
+    game:GetService('RunService').RenderStepped:connect(function()
+		if HitboxStatus == true and TeamCheck == false and FriendCheck == false then
+			for i,v in next, game:GetService('Players'):GetPlayers() do
+				if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+					pcall(function()
+						v.Character.HumanoidRootPart.Size = Vector3.new(HitboxSize, HitboxSize, HitboxSize)
+						v.Character.HumanoidRootPart.Transparency = HitboxTransparency
+						v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+						v.Character.HumanoidRootPart.Material = "Neon"
+						v.Character.HumanoidRootPart.CanCollide = false
+					end)
+				end
+			end
+        elseif HitboxStatus == true and TeamCheck == false and FriendCheck == true then
+            for i,v in next, game:GetService('Players'):GetPlayers() do
+                for i2,v2 in pairs(game:GetService('Players'):GetChildren()) do
+                    if v.Name ~= game:GetService('Players').LocalPlayer.Name and not v2:IsFriendsWith(game:GetService('Players').LocalPlayer.UserId) then
+                        pcall(function()
+                            v.Character.HumanoidRootPart.Size = Vector3.new(HitboxSize, HitboxSize, HitboxSize)
+                            v.Character.HumanoidRootPart.Transparency = HitboxTransparency
+                            v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+                            v.Character.HumanoidRootPart.Material = "Neon"
+                            v.Character.HumanoidRootPart.CanCollide = false
+                        end)
+                    end
+                end
+			end
+        elseif HitboxStatus == true and TeamCheck == true and FriendCheck == false then
+            for i,v in next, game:GetService('Players'):GetPlayers() do
+				if game:GetService('Players').LocalPlayer.Team ~= v.Team then
+					pcall(function()
+						v.Character.HumanoidRootPart.Size = Vector3.new(HitboxSize, HitboxSize, HitboxSize)
+						v.Character.HumanoidRootPart.Transparency = HitboxTransparency
+						v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+						v.Character.HumanoidRootPart.Material = "Neon"
+						v.Character.HumanoidRootPart.CanCollide = false
+					end)
+				end
+			end
+        elseif HitboxStatus == true and TeamCheck == true and FriendCheck == true then
+            for i,v in next, game:GetService('Players'):GetPlayers() do
+				if game:GetService('Players').LocalPlayer.Team ~= v.Team and not game:GetService('Players'):IsFriendsWith(UserId) then
+					pcall(function()
+						v.Character.HumanoidRootPart.Size = Vector3.new(HitboxSize, HitboxSize, HitboxSize)
+						v.Character.HumanoidRootPart.Transparency = HitboxTransparency
+						v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+						v.Character.HumanoidRootPart.Material = "Neon"
+						v.Character.HumanoidRootPart.CanCollide = false
+					end)
+				end
+			end
+		else
+		    for i,v in next, game:GetService('Players'):GetPlayers() do
+				if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+					pcall(function()
+						v.Character.HumanoidRootPart.Size = Vector3.new(2,2,1)
+						v.Character.HumanoidRootPart.Transparency = 1
+						v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Medium stone grey")
+						v.Character.HumanoidRootPart.Material = "Plastic"
+						v.Character.HumanoidRootPart.CanCollide = false
+					end)
+				end
+			end
+		end
+	end)
+end)
+
+HomeTab:Toggle("团队检查", function(state)
+    getgenv().TeamCheck = state
+end)
+
+HomeTab:Keybind("切换用户界面", Enum.KeyCode.F, function()
+    Library:ToggleUI()
+end)
+
+PlayerTab:Slider("速度", 16,500, function(value)
+    getgenv().Walkspeed = value
+    pcall(function()
+        game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
+    end)
+end)
+
+PlayerTab:Slider("跳跃", 50,1000, function(value)
+    getgenv().Jumppower = value
+    pcall(function()
+        game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = value
+    end)
+end)
+
+PlayerTab:Slider("视界", 70,120, function(v)
+     game.Workspace.CurrentCamera.FieldOfView = v
+end)
+
+PlayerTab:Toggle("停止速度/跳跃", function(state)
+    getgenv().loopWJ = state
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if loopWJ == true then
+            pcall(function()
+                game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
+                game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Jumppower
+            end)
+        end
+    end)
+end)
+
+PlayerTab:Toggle("停止速度", function(state)
+    getgenv().loopW = state
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if loopW == true then
+            pcall(function()
+                game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
+            end)
+        end
+    end)
+end)
+
+PlayerTab:Toggle("停止跳跃", function(state)
+    getgenv().loopJ = state
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if loopJ == true then
+            pcall(function()
+                game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Jumppower
+            end)
+        end
+    end)
+end)
+
+PlayerTab:Toggle("没clip", function(s)
+    getgenv().Noclip = s
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if Noclip == true then
+            game:GetService("RunService").Stepped:wait()
+            game.Players.LocalPlayer.Character.Head.CanCollide = false
+            game.Players.LocalPlayer.Character.Torso.CanCollide = false
+        end
+    end)
+end)
+
+PlayerTab:Toggle("穿墙", function(Value)
+if Value then
+      Noclip = true
+      Stepped = game.RunService.Stepped:Connect(function()
+        if Noclip == true then
+          for a, b in pairs(game.Workspace:GetChildren()) do
+            if b.Name == game.Players.LocalPlayer.Name then
+              for i, v in pairs(game.Workspace[game.Players.LocalPlayer.Name]:GetChildren()) do
+                if v:IsA("BasePart") then
+                  v.CanCollide = false
+                end
+              end
+            end
+          end
+         else
+          Stepped:Disconnect()
+        end
+      end)
+     else
+      Noclip = false
+    end
+end)
+
+PlayerTab:Toggle("夜视", function(Value)
+if Value then
+		    game.Lighting.Ambient = Color3.new(1, 1, 1)
+		else
+		    game.Lighting.Ambient = Color3.new(0, 0, 0)
+		end
+end)
+
+PlayerTab:Toggle("无限跳跃", function(s)
+getgenv().InfJ = s
+    game:GetService("UserInputService").JumpRequest:connect(function()
+        if InfJ == true then
+            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        end
+    end)
+end)
+
+PlayerTab:Button("重新服务器", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+
+VisualTab:Toggle("高光[透视]", function(state)
+getgenv().enabled = state --Toggle on/off
+getgenv().filluseteamcolor = true --Toggle fill color using player team color on/off
+getgenv().outlineuseteamcolor = true --Toggle outline color using player team color on/off
+getgenv().fillcolor = Color3.new(0, 0, 0) --Change fill color, no need to edit if using team color
+getgenv().outlinecolor = Color3.new(1, 1, 1) --Change outline color, no need to edit if using team color
+getgenv().filltrans = 0.5 --Change fill transparency
+getgenv().outlinetrans = 0.5 --Change outline transparency
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/RobloxScripts/main/Highlight-ESP.lua"))()
+end)
+
+VisualTab:Toggle("(每个人)透视名称", function(state)
+    getgenv().ESPName = state
+end)
+
+VisualTab:Toggle("(仅限敌人)透视名字(快！)", function(state)
+    getgenv().TeamCheckkk = state
+end)
+
+local c = workspace.CurrentCamera
+local ps = game:GetService("Players")
+local lp = ps.LocalPlayer
+local rs = game:GetService("RunService")
+
+local function esp(p,cr)
+	local h = cr:WaitForChild("Humanoid")
+	local hrp = cr:WaitForChild("Head")
+
+	local text = Drawing.new("Text")
+	text.Visible = false
+	text.Center = true
+	text.Outline = false 
+	text.Font = 3
+	text.Size = 16.16
+	text.Color = Color3.new(170,170,170)
+
+	local conection
+	local conection2
+	local conection3
+
+	local function dc()
+		text.Visible = false
+		text:Remove()
+		if conection then
+			conection:Disconnect()
+			conection = nil 
+		end
+		if conection2 then
+			conection2:Disconnect()
+			conection2 = nil 
+		end
+		if conection3 then
+			conection3:Disconnect()
+			conection3 = nil 
+		end
+	end
+
+	conection2 = cr.AncestryChanged:Connect(function(_,parent)
+		if not parent then
+			dc()
+		end
+	end)
+
+	conection3 = h.HealthChanged:Connect(function(v)
+		if (v<=0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
+			dc()
+		end
+	end)
+
+	conection = rs.RenderStepped:Connect(function()
+		local hrp_pos,hrp_onscreen = c:WorldToViewportPoint(hrp.Position)
+		if hrp_onscreen and ESPName == true then
+			text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y - 27)
+			text.Text = p.DisplayName.." (@"..p.Name..")"
+			text.Visible = true
+		else
+			text.Visible = false
+		end
+	end)
+end
+
+local function p_added(p)
+	if p.Character then
+		esp(p,p.Character)
+	end
+	p.CharacterAdded:Connect(function(cr)
+		esp(p,cr)
+	end)
+end
+
+for i,p in next, ps:GetPlayers() do 
+	if p ~= lp then
+		p_added(p)
+	end
+end
+
+ps.PlayerAdded:Connect(p_added)
+
+ -- Gui to Lua 
+ -- Version: 3.2 
+  
+ -- Instances:
+ local ScreenGui = Instance.new("ScreenGui") 
+ local FpsLabel = Instance.new("TextLabel")
+ 
+ --Properties:
+ 
+ ScreenGui.Name = "FPSGui" 
+ ScreenGui.ResetOnSpawn = false 
+ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling 
+ 
+ FpsLabel.Name = "FPSLabel" 
+ FpsLabel.Size = UDim2.new(0, 100, 0, 50) 
+ FpsLabel.Position = UDim2.new(0, 10, 0, 10) 
+ FpsLabel.BackgroundTransparency = 1 
+ FpsLabel.Font = Enum.Font.SourceSansBold 
+ FpsLabel.Text = "帧率: 0" 
+ FpsLabel.TextSize = 20 
+ FpsLabel.TextColor3 = Color3.new(1, 1, 1) 
+ FpsLabel.Parent = ScreenGui 
+  
+ function updateFpsLabel() 
+     local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait()) 
+     FpsLabel.Text = "帧率: " .. fps 
+ end 
+  
+  game:GetService("RunService").RenderStepped:Connect(updateFpsLabel) 
+  
+ ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+
+ animateCredits()
