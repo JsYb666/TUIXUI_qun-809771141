@@ -1,0 +1,146 @@
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "退休小制作",
+    Text = "欢迎使用",
+    Duration = 6,
+    Icon = "rbxassetid://75651078263617"
+})
+
+CoreGui:SetCore("SendNotification", {
+    Title = "退休小制作",
+    Text = "人物旋转",
+    Duration = 7,
+    Icon = "rbxassetid://75651078263617"
+})
+
+local humanoid = character:WaitForChild("Humanoid")
+local rootPart = character:WaitForChild("HumanoidRootPart")
+
+local Workspace = game:GetService("Workspace")
+
+local gravityOff = false
+local defaultGravity = 75
+
+local function toggleGravity()
+    if not gravityOff then
+        local currentGravity = Workspace.Gravity
+        Workspace.Gravity = 99999
+        gravityOff = true
+    else
+        Workspace.Gravity = defaultGravity
+        gravityOff = false
+    end
+end
+
+local playerGui = localPlayer:WaitForChild("PlayerGui")
+local existingScreenGui = playerGui:FindFirstChild("ScreenGui")
+
+if existingScreenGui then
+    Workspace.Gravity = defaultGravity
+    gravityOff = false
+    local rotateButton = existingScreenGui:FindFirstChild("RotateButton")
+    if rotateButton then
+        rotateButton.Text = "开始旋转"
+    end
+    existingScreenGui:Destroy()
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ScreenGui"
+ScreenGui.Parent = playerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 250, 0, 250)
+frame.Position = UDim2.new(0.5, -125, 0.5, -125)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.Parent = ScreenGui
+
+local dragging = false
+local dragInput, dragStart, startPos
+
+frame.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = frame.Position
+    end
+end)
+
+frame.InputChanged:Connect(function(input)
+    if dragging and (input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseMovement) then
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+
+frame.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
+local speedInput = Instance.new("TextBox")
+speedInput.Size = UDim2.new(0, 230, 0, 40)
+speedInput.Position = UDim2.new(0, 10, 0, 70)
+speedInput.Text = "旋转速度"
+speedInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+speedInput.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+speedInput.TextSize = 20
+speedInput.ClearTextOnFocus = true
+speedInput.Parent = frame
+
+local rotateButton = Instance.new("TextButton")
+rotateButton.Name = "RotateButton"
+rotateButton.Size = UDim2.new(0, 230, 0, 40)
+rotateButton.Position = UDim2.new(0, 10, 0, 10)
+rotateButton.Text = "开始旋转"
+rotateButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+rotateButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+rotateButton.TextSize = 20
+rotateButton.Parent = frame
+
+local rotating = false
+local rotationSpeed = 0.01
+
+rotateButton.MouseButton1Click:Connect(function()
+    local speed = tonumber(speedInput.Text) or 1
+    rotationSpeed = speed / 2
+    if rotating then
+        rotating = false
+        rotateButton.Text = "开始旋转"
+    else
+        rotating = true
+        rotateButton.Text = "停止旋转"
+        task.spawn(function()
+            while rotating do
+                local rotationDelta = math.rad(rotationSpeed)
+                local newCFrame = rootPart.CFrame * CFrame.Angles(0, rotationDelta, 0)
+                rootPart.CFrame = newCFrame
+                wait(0.001)
+            end
+        end)
+    end
+end)
+
+local gravityButton = Instance.new("TextButton")
+gravityButton.Size = UDim2.new(0, 230, 0, 40)
+gravityButton.Position = UDim2.new(0, 10, 0, 130)
+gravityButton.Text = "切换重力"
+gravityButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+gravityButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+gravityButton.TextSize = 20
+gravityButton.Parent = frame
+
+gravityButton.MouseButton1Click:Connect(function()
+    toggleGravity()
+    if gravityOff then
+        gravityButton.Text = "防飞已开"
+    else
+        gravityButton.Text = "防飞已关"
+    end
+end)
